@@ -1,0 +1,16 @@
+.gitlab-ci.yml
+/idea
+/__pycache__
+/images
+/dataset
+/src/Dockerfile.backup
+/src/Dockerfile.debug
+/src/api/__pycache__
+/src/api/modules/__pycache__
+/src/api/modules/utils/__pycache__
+/src/api/insightface
+/models
+/crops
+/test_images
+/deploy_debug.sh
+TODO.md
