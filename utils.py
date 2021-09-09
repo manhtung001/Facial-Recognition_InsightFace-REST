@@ -57,7 +57,7 @@ def writeEmbeded2Text(embedded, folderUserPath):
 
 
 def call2InsightRest(file, user_id, isReset=0, server='http://localhost:18081/extract'):
-    target = [file2base64Local(file)]
+    target = [file2base64Api(file)]
     embFromApi = callApi(target, server)
 
     if (isinstance(embFromApi, str)):
@@ -74,7 +74,7 @@ def call2InsightRest(file, user_id, isReset=0, server='http://localhost:18081/ex
         os.mkdir(folderUserPath)
     listEmbFromData = os.listdir(folderUserPath)
 
-    if len(listEmbFromData) <= 0:
+    if len(listEmbFromData) <= 9:
         writeEmbeded2Text(embFromApi, folderUserPath)
         return "Add Success"
     else:
