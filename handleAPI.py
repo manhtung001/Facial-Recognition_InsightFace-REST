@@ -33,7 +33,9 @@ async def prediction(idUser: int, isReset: int = 0, fileUpload: UploadFile = Fil
         return res
     else:
         # Return score Emd of Eul and Cos
-        return {'mindistEuc': res[0], 'mindistCos': res[1], "result": min(res)}
+        _min = min(res)
+        result = 1 if _min <= 0.5 else 0
+        return {'mindistEuc': res[0], 'mindistCos': res[1], "min": _min, "result": result}
 
 
 # Allows the server to be run in this interactive environment
