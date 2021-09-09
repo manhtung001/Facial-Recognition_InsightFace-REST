@@ -28,7 +28,7 @@ async def prediction(idUser: int, isReset: int = 0, fileUpload: UploadFile = Fil
     # call server of insightFace REST
     server = 'http://localhost:18081/extract'
     res = call2InsightRest(file=fileUpload, user_id=idUser, server=server, isReset=isReset)
-    if (isinstance(res, str)):
+    if isinstance(res, str):
         # Return add sucess
         return res
     else:

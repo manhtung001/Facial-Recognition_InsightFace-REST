@@ -11,9 +11,15 @@ session = requests.Session()
 session.trust_env = False
 
 
-def file2base64(file):
+def file2base64Api(file):
     encoded = base64.b64encode(file.file.read()).decode('ascii')
     return encoded
+
+
+def file2base64Local(path):
+    with open(path, mode='rb') as fl:
+        encoded = base64.b64encode(fl.read()).decode('ascii')
+        return encoded
 
 
 def callApi(target, server):
@@ -51,7 +57,7 @@ def writeEmbeded2Text(embedded, folderUserPath):
 
 
 def call2InsightRest(file, user_id, isReset=0, server='http://localhost:18081/extract'):
-    target = [file2base64(file)]
+    target = [file2base64Local(file)]
     embFromApi = callApi(target, server)
 
     if (isinstance(embFromApi, str)):
@@ -68,7 +74,7 @@ def call2InsightRest(file, user_id, isReset=0, server='http://localhost:18081/ex
         os.mkdir(folderUserPath)
     listEmbFromData = os.listdir(folderUserPath)
 
-    if len(listEmbFromData) <= 9:
+    if len(listEmbFromData) <= 0:
         writeEmbeded2Text(embFromApi, folderUserPath)
         return "Add Success"
     else:
